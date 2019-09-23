@@ -1,3 +1,3 @@
 # auto-balloon-kvm
 
-add 1 minute crontjob to run proper
+add 1 minute cronjob to run proper

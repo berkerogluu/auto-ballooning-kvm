@@ -2,11 +2,10 @@
 
 #Script coded by Berk Eroglu on 09/23/2019
 
-#Variables that you can change MiB
+#Variables that you can change in MiB
 PROCESS_MEMORY_AT=10000      
 TOTAL_VM=60    
 MEMORY_PER_VM=2000          
-##############################
 
 AVAILABLE_MEM=$(awk '/^Mem/ {print $7}' <(free -m))
 

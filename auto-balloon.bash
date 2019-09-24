@@ -3,6 +3,7 @@
 #Script coded by Berk Eroglu on 09/23/2019
 #Last Update on 09/24/2019
 
+#Don't use this script with ksm and ksmtuned
 #Variable that you can change in MiB PROCESS_MEMORY_AT
 PROCESS_MEMORY_AT=10000
 

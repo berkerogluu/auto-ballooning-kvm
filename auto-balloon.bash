@@ -10,7 +10,7 @@ PROCESS_MEMORY_AT=10000
 TOTAL_VM=$(virsh list --state-running | grep . -c)    
 AVAILABLE_MEM=$(awk '/^Mem/ {print $7}' <(free -m))
 IN_USE_MEM=$(awk '/^Mem/ {print $3}' <(free -m))
-MEMORY_PER_VM=(($IN_USE_MEM/$TOTAL_VM))
+MEMORY_PER_VM=$(($IN_USE_MEM/$TOTAL_VM))
 
 if [[ $AVAILABLE_MEM -lt $PROCESS_MEMORY_AT ]]
 then

@@ -3,8 +3,7 @@
 #Script coded by Berk Eroglu on 09/23/2019
 #Last Update on 09/23/2019
 
-#Variables that you can change in MiB
-
+#Variable that you can change in MiB PROCESS_MEMORY_AT
 PROCESS_MEMORY_AT=10000
 
 TOTAL_VM=$(virsh list --state-running | grep . -c)    

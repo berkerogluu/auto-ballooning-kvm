@@ -6,9 +6,9 @@
 #Variables that you can change in MiB
 
 PROCESS_MEMORY_AT=10000
-TOTAL_VM=60    
-MEMORY_PER_VM=2000          
+MEMORY_PER_VM=2000
 
+TOTAL_VM=$(virsh list --state-running | grep . -c)    
 AVAILABLE_MEM=$(awk '/^Mem/ {print $7}' <(free -m))
 
 if [[ $AVAILABLE_MEM -lt $PROCESS_MEMORY_AT ]]

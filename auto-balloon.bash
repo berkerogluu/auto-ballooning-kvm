@@ -16,10 +16,10 @@ fi
 
 if [[ -f "/usr/local/auto-balloon.bash" ]]
 then
-TOTAL_VM=$(virsh list --state-running | grep . -c)    
-AVAILABLE_MEM=$(awk '/^Mem/ {print $7}' <(free -m))
-IN_USE_MEM=$(awk '/^Mem/ {print $3}' <(free -m))
-MEMORY_PER_VM=$(($IN_USE_MEM/$TOTAL_VM))
+   TOTAL_VM=$(virsh list --state-running | grep . -c)    
+   AVAILABLE_MEM=$(awk '/^Mem/ {print $7}' <(free -m))
+   IN_USE_MEM=$(awk '/^Mem/ {print $3}' <(free -m))
+   MEMORY_PER_VM=$(($IN_USE_MEM/$TOTAL_VM))
 else
    if [[ $AVAILABLE_MEM -lt $PROCESS_MEMORY_AT ]]
    then

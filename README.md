@@ -5,7 +5,10 @@ You can use this script with your qemu kvm instances that configured by libvirt.
 ### Usage
 ```
 cd /
+
 wget https://raw.githubusercontent.com/Scispow/auto-ballooning-kvm/master/auto-balloon.bash
+
 chmod +x auto-balloon.bash
+
 bash auto-balloon.bash
 ```

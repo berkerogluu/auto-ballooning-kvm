@@ -21,7 +21,7 @@ then
    IN_USE_MEM=$(awk '/^Mem/ {print $3}' <(free -m))
    MEMORY_PER_VM=$(($IN_USE_MEM/$TOTAL_VM))
 else
-   if [[ $AVAILABLE_MEM -lt $PROCESS_MEMORY_AT ]]
+   if [[ $AVAILABLE_MEM < $PROCESS_MEMORY_AT ]]
    then
       DEFLATE_MEMORY_PER_VM=$(($PROCESS_MEMORY_AT - $AVAILABLE_MEM))/$(($TOTAL_VM))
       for i in `virsh list --all|awk '{print $2}'|grep -v Name`; do virsh setmem $i $(($MEMORY_PER_VM * 1000 - $DEFLATE_MEMORY_PER_VM * 1000)); done

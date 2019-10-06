@@ -7,14 +7,13 @@
 #Variable that you can change in MiB PROCESS_MEMORY_AT
 PROCESS_MEMORY_AT=10000
 
-if [[ ! -f "/usr/local/auto-balloon.bash" ]] 
+if [[ ! -f /usr/local/auto-balloon.bash ]] 
 then
-   CURRENT_PATH=$($0)
-   mv "$CURRENT_PATH/auto-balloon.bash" /usr/local/
-   cat <(crontab -l) <(echo "* * * * * bash /usr/local/auto-balloon.bash") | crontab -
+   mv 'auto-balloon.bash' /usr/local/
+   cat <(crontab -l) <(echo '* * * * * bash /usr/local/auto-balloon.bash') | crontab -
 fi
 
-if [[ -f "/usr/local/auto-balloon.bash" ]]
+if [[ -f /usr/local/auto-balloon.bash ]]
 then
    TOTAL_VM=$(virsh list --state-running | grep . -c)    
    AVAILABLE_MEM=$(awk '/^Mem/ {print $7}' <(free -m))
@@ -24,6 +23,6 @@ else
    if [[ $AVAILABLE_MEM < $PROCESS_MEMORY_AT ]]
    then
       DEFLATE_MEMORY_PER_VM=$(($PROCESS_MEMORY_AT - $AVAILABLE_MEM))/$(($TOTAL_VM))
-      for i in `virsh list --all|awk '{print $2}'|grep -v Name`; do virsh setmem $i $(($MEMORY_PER_VM * 1000 - $DEFLATE_MEMORY_PER_VM * 1000)); done
+      for i in `virsh list --all|awk '{print $2}'|grep -v Name`; do virsh setmem $i $(($MEMORY_PER_VM * 1000)) - $(($DEFLATE_MEMORY_PER_VM * 1000)); done
    fi
 fi
